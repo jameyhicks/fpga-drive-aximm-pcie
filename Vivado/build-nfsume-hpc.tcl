@@ -11,6 +11,9 @@ set origin_dir "."
 # Set the directory path for the original project from where this script was exported
 set orig_proj_dir "[file normalize "$origin_dir/$design_name"]"
 
+set_param board.repoPaths [list "./"]
+get_board_parts
+
 # Create project
 create_project -part {xc7vx690tffg1761-3} -force $design_name $origin_dir/$design_name
 
@@ -19,7 +22,7 @@ set proj_dir [get_property directory [current_project]]
 
 # Set project properties
 set obj [get_projects $design_name]
-#set_property "board_part" "xilinx.com:nfsume:part0:1.8" $obj
+set_property "board_part" "digilentinc.com:nfsume:part0:1.0" $obj
 set_property "default_lib" "xil_defaultlib" $obj
 set_property "simulator_language" "Mixed" $obj
 set_property "source_mgmt_mode" "DisplayOnly" $obj
